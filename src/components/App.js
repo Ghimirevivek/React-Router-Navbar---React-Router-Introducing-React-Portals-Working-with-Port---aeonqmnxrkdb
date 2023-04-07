@@ -1,31 +1,39 @@
 import React from 'react'
-import '../styles/App.css';
-import { Link, BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import Home from './Home';
-import AboutUs from './AboutUs';
+import '../styles/App.css'
+import { Link, BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import Home from './Home'
+import AboutUs from './AboutUs'
 const App = () => {
-
+  const Navbar = () => {
+    return (
+      <div id="navbar">
+        <Link to="/home" id="home-link">
+          Home
+        </Link>
+        <Link to="/about-us" id="aboutus-link">
+          About Us
+        </Link>
+      </div>
+    )
+  }
   return (
     <div id="main">
       <BrowserRouter>
+        <Navbar />
         <Switch>
-          <Route>
-            <div id='navbar'>
-              <div id='home-link'> Home</div>
-              <div id='aboutus-link'>About Us</div>
-            </div>
-          </Route>
-          <Route>
+          <Route path="/home">
             <Home />
           </Route>
-          <Route >
+          <Route path="/about-us">
             <AboutUs />
+          </Route>
+          <Route path="/">
+            <Redirect to="/home" />
           </Route>
         </Switch>
       </BrowserRouter>
-    </div >
+    </div>
   )
 }
 
-
-export default App;
+export default App
